@@ -1,0 +1,115 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Prevent horizontal scrollbar */
+    display: flex;
+    flex-direction: column;
+}
+
+header, footer {
+    width: 100%;
+    text-align: center;
+    background-color: #f1f1f1; /* Match header and footer color */
+    padding: 10px 0;
+}
+
+header {
+    position: sticky;
+    top: 0;
+}
+
+.grid-container {
+    flex: 1;
+    display: grid;
+    grid-template-rows: repeat(4, 1fr); /* 4 rækker */
+    grid-template-columns: repeat(5, 1fr); /* 5 kolonner */
+    width: 100%; /* Use 100% width */
+    height: 100%; /* Use 100% height */
+    gap: 10px; /* Increase gap to 10px */
+    padding: 10px; /* Add padding around the entire grid */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+    overflow: auto; /* Allow vertical scrolling if needed */
+}
+
+.grid-item {
+    position: relative; /* Add relative positioning */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white; /* Set default background color to white */
+    padding: 10px; /* Add more padding to grid items */
+}
+
+.grid-item:not(:empty) {
+    border: 1px solid #333; /* Add border to grid items that are not empty */
+    background-color: #f1f1f1; /* Change background color for non-empty grid items to match footer */
+}
+
+.online-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 16px;
+}
+
+footer {
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    justify-content: center; /* Center the footer content */
+    align-items: center;
+    padding: 10px;
+    background-color: #f1f1f1;
+}
+
+#openModalBtn {
+    margin-left: auto;
+}
+
+#openModalLink {
+    margin-left: auto;
+    text-decoration: none;
+    color: blue;
+    cursor: pointer;
+}
+
+#openModalLink:hover {
+    text-decoration: underline;
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
