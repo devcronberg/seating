@@ -4,43 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const footer = document.getElementById('footer');
     const closeModalBtn = document.getElementsByClassName('close')[0];
 
-    const jsonFiles = [
-        { fileName: 'test1.json', date: '2023-01-01' },
-        { fileName: 'test2.json', date: '2023-02-01' },
-        { fileName: 'test3.json', date: '2023-03-01' }
-    ];
-
-    jsonFiles.sort((a, b) => new Date(b.date) - new Date(a.date));
-
     const modalContent = document.querySelector('.modal-content');
     // Clear existing buttons
     modalContent.innerHTML = `
         <span class="close">&times;</span>
         <h2>Select JSON File</h2>
     `;
-    jsonFiles.forEach(file => {
-        const button = document.createElement('button');
-        button.textContent = `Load ${file.fileName}`;
-        button.onclick = () => loadJsonFile(file.fileName);
-        modalContent.appendChild(button);
-    });
-
-    const showModal = () => {
-        modal.style.display = 'block';
-    };
-
-    header.onclick = showModal;
-    footer.onclick = showModal;
-
-    closeModalBtn.onclick = () => {
-        modal.style.display = 'none';
-    };
-
-    window.onclick = (event) => {
-        if (event.target == modal) {
-            modal.style.display = 'none';
-        }
-    };
 
     const loadJsonFile = (fileName) => {
         fetch(fileName)
@@ -79,6 +48,44 @@ document.addEventListener('DOMContentLoaded', () => {
                 modal.style.display = 'none';
             })
             .catch(error => console.error('Error fetching grid configuration:', error));
+    };
+
+    const fetchJsonFiles = () => {
+        fetch('/data/files.json')
+            .then(response => response.json())
+            .then(files => {
+                files.forEach(file => {
+                    fetch(`/data/${file}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            const button = document.createElement('button');
+                            button.textContent = `${data.title}`;
+                            button.onclick = () => loadJsonFile(`/data/${file}`);
+                            modalContent.appendChild(button);
+                        })
+                        .catch(error => console.error('Error fetching JSON file:', error));
+                });
+            })
+            .catch(error => console.error('Error fetching JSON file list:', error));
+    };
+
+    fetchJsonFiles();
+
+    const showModal = () => {
+        modal.style.display = 'block';
+    };
+
+    header.onclick = showModal;
+    footer.onclick = showModal;
+
+    closeModalBtn.onclick = () => {
+        modal.style.display = 'none';
+    };
+
+    window.onclick = (event) => {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
     };
 
     // Check for JSON file in URL

@@ -1,0 +1,21 @@
+{
+    "header": "C# Grundlæggende - Århus - nov. 2024",
+    "footer": "Michell Cronberg (michell@cronberg.dk)",
+    "grid": {
+        "rows": 3,
+        "columns": 3
+    },
+    "names": [
+        { "id": 1, "name": "Ikke besat", "bgColor": "lightgray" },
+        { "id": 2, "name": "Dennis"},
+        { "id": 3, "name": "Jan" },
+        { "id": 4, "name": "Ikke besat", "bgColor": "lightgray"},
+        { "id": 5, "name": "Julia"},
+        { "id": 6, "name": "William" },
+        { "id": 7, "name": "Michell", "bgColor": "lightblue" },
+        { "id": 8, "name": "", "online": false, "bgColor": "" },
+        { "id": 9, "name": "", "online": false, "bgColor": "" }
+    ],
+    "title": "Århus 1.1.4 C# GR 2024-11",
+    "date": "2024-11-10"
+}
